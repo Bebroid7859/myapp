@@ -20,10 +20,16 @@ pipeline {
                 sh 'docker run --rm myapp:latest pytest test_app.py'
             }
 	}
+	stage('Scan') {
+	    steps {
+		echo 'scanning image with Trivy...'
+		sh 'trivy image --no-progress myapp:latest'
+	    }
+	}
 	stage('Run') {
 	    steps {
-	        echo 'Running app...'
-	        sh 'docker run --rm myapp:latest'
+	        echo 'Running app with .env...'
+	        sh 'docker run --rm  --env-file .env myapp:latest'
 	    }
         }
     }

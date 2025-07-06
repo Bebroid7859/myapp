@@ -1,1 +1,3 @@
-print("Hello from CI/CD!")
+import os
+
+print(os.getenv("GREETING", "Default greeting"))
