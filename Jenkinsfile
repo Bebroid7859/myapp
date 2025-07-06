@@ -5,7 +5,7 @@ pipeline {
         stage('Clone') {
             steps {
                 echo 'Cloning repo...'
-                // если локально, то пропустим — Jenkins уже в папке
+                // если локально то неважно jenkins уже в папке
             }
         }
         stage('Build') {
