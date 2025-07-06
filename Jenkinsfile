@@ -16,9 +16,14 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo 'Running container...'
-                sh 'docker run --rm myapp:latest'
+                echo 'Running tests in container...'
+                sh 'docker run --rm myapp:latest pytest test_app.py'
             }
+	stage('Run') {
+	   steps {
+	       echo 'Running app...'
+	       sh 'docker run --rm myapp:latest'
+	   }
         }
     }
 }
